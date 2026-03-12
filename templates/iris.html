@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Iris Species Predictor</title>
+
+<style>
+body{
+    font-family: Arial;
+    
+    text-align: center;
+}
+
+.container{
+    background: rgba(255,255,255,0.9);
+    width: 400px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+input{
+    width: 80%;
+    padding: 10px;
+    margin: 8px;
+}
+
+button{
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    background: darkgreen;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Iris Flower Prediction</h2>
+
+<form action="/predict" method="post">
+
+<input type="text" name="sepal_length" placeholder="Sepal Length in cm" required><br>
+
+<input type="text" name="sepal_width" placeholder="Sepal Width in cm" required><br>
+
+<input type="text" name="petal_length" placeholder="Petal Length in cm" required><br>
+
+<input type="text" name="petal_width" placeholder="Petal Width in cm" required><br>
+
+<button type="submit">Predict</button>
+
+</form>
+
+<br>
+
+<div style="text-align: center;">
+    <h3>Iris Species</h3>
+    <ul style="list-style: none; padding: 0;">
+      <li>Iris-setosa</li>
+      <li>Iris-versicolor</li>
+      <li>Iris-virginica</li>
+    </ul>
+  </div>
+  
+
+<br>
+
+<h3> prediction </h3>
+
+</div>
+
+</body>
+</html>

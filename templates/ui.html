@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>User Interface</title>
+    <style>
+        body{
+            font-family: Arial;
+            background-color: #f2f2f2;
+            background-image: url("bg.jpg"); /* local image */
+            background-size: cover;      /* cover full screen */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container{
+            width: 300px;
+            margin: auto;
+            margin-top: 100px;
+            padding: 20px;
+            background: rgb(176, 176, 176);
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+            text-align: center;
+        }
+
+        input{
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button{
+            padding: 10px 20px;
+            background: rgb(85, 174, 252);
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background: rgb(85, 174, 252);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>User Login</h2>
+    
+        <input type="text" placeholder="Enter Username"><br>
+        <input type="password" placeholder="Enter Password"><br>
+    
+        <button>Login</button>
+        <button>Register</button>
+    </div>
+    
+</body>
+</html>

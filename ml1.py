@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import pickle as pkl
 
 df = pd.read_csv(r"C:\Users\aksha\Documents\pyth\iris.data",names=["sepal length in cm","sepal width in cm","petal length in cm","petal width in cm", "species"])
 df
@@ -26,3 +27,6 @@ accuracy = accuracy_score(y_test, y_pred)
 cm = confusion_matrix(y_test, y_pred)
 print("confusion matrix:",cm)
 print("Accuracy:", accuracy)
+
+with open ('mm1.pkl','wb') as file:
+    pkl.dump(gb,file)

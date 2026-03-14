@@ -1,32 +1,40 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pickle as pkl
+import numpy as np
+import pandas as pd
 
 app = Flask(__name__)
 
-with open ('mm1.pkl','rb') as file:
-    data=pkl.load(file)
+# Load model
+with open('mm1.pkl','rb') as file:
+    model = pkl.load(file)
 
 @app.route('/')
 def iris():
     return render_template('iris.html')
-@app.route('/pred')
-def iris1():
-    petal_length = request.form['petal_length']
-    sepal_length = request.form['sepal_length']
-    petal_width = request.form['petal_width']
-    sepal_width = request.form['sepal_width']
-    model_choice = request.form['model_choice']
 
-    # Clean the data by convert from unicode to float
-    sample_data = [sepal_length,sepal_width,petal_length,petal_width]
-    clean_data = [float(i) for i in sample_data]
+@app.route('/predict', methods=['POST'])
+def predict():
 
-    # Reshape the Data as a Sample not Individual Features
-    ex1 = np.array(clean_data).reshape(1,-1)
-    prediction = predict(ex1)
+    s_len = request.form.get('sepal_length')
+    s_wid = request.form.get('sepal_width')
+    p_len = request.form.get('petal_length')
+    p_wid = request.form.get('petal_width')
 
-    return render_template('iris.html', predict_text = ' flower species is {}'.format(prediction))
-     
+    clean_data = [float(s_len), float(s_wid), float(p_len), float(p_wid)]
+
+    feature_names = [
+        'sepal length in cm',
+        'sepal width in cm',
+        'petal length in cm',
+        'petal width in cm'
+    ]
+
+    ex1 = pd.DataFrame([clean_data], columns=feature_names)
+
+    prediction = model.predict(ex1)
+
+    return render_template('iris.html', prediction_text=f'Flower species is {prediction[0]}')
 
 if __name__ == "__main__":
     app.run()
